@@ -7,6 +7,8 @@ set -eu
 
 ## env
 : ${ENV:=/dev/null}
+: ${TAG:=latest}
+
 argv=$@
 
 ## main
@@ -15,5 +17,5 @@ docker run \
 	-it \
 	--rm \
 	--env-file "$ENV" \
-	-- alpine:latest sh -xc \
+	-- alpine:$TAG sh -xc \
 	'cat /etc/os-release; $@' _ "$@"
